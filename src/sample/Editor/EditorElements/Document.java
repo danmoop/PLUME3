@@ -1,13 +1,17 @@
-package sample.Editor;
+package sample.Editor.EditorElements;
 
-public abstract class Document
+import java.io.File;
+
+public class Document
 {
+    private File path;
     private String documentName;
     private int amountOfWords;
     private int amountOfChars;
 
-    public Document(String documentName, int amountOfWords, int amountOfChars)
+    public Document(File path, String documentName, int amountOfWords, int amountOfChars)
     {
+        this.path = path;
         this.documentName = documentName;
         this.amountOfWords = amountOfWords;
         this.amountOfChars = amountOfChars;
@@ -21,6 +25,16 @@ public abstract class Document
     public void setDocumentName(String documentName)
     {
         this.documentName = documentName;
+    }
+
+    public File getPath()
+    {
+        return path;
+    }
+
+    public void setPath(File path)
+    {
+        this.path = path;
     }
 
     public int getAmountOfWords()
@@ -41,5 +55,16 @@ public abstract class Document
     public void setAmountOfChars(int amountOfChars)
     {
         this.amountOfChars = amountOfChars;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Document{" +
+                "documentName='" + documentName + '\'' +
+                ", path=" + path +
+                ", amountOfWords=" + amountOfWords +
+                ", amountOfChars=" + amountOfChars +
+                '}';
     }
 }
