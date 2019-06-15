@@ -1,0 +1,32 @@
+.listView {
+    -fx-background-color: #242422;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: #444;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 1, 0);
+}
+
+.listView .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.listView .list-cell:selected {
+    -fx-background-color: #121212;
+    -fx-text-fill: white;
+}
+
+.listView .scroll-bar:horizontal ,
+.listView .scroll-bar:vertical{
+     -fx-background-color: #222;
+}
+
+.listView .increment-button ,.listView .decrement-button {
+    -fx-background-color:transparent;
+	-fx-border-color:derive(gray,80%);
+}
+
+.listView .scroll-bar:horizontal .thumb,
+.listView .scroll-bar:vertical .thumb {
+    -fx-background-color: #0b0a0d;
+}

@@ -1,8 +1,9 @@
 package sample.Editor.EditorElements;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class Document
+public class Document implements Serializable
 {
     private File path;
     private String documentName;
@@ -61,8 +62,8 @@ public class Document
     public String toString()
     {
         return "Document{" +
-                "documentName='" + documentName + '\'' +
-                ", path=" + path +
+                "path=" + path +
+                ", documentName='" + documentName + '\'' +
                 ", amountOfWords=" + amountOfWords +
                 ", amountOfChars=" + amountOfChars +
                 '}';

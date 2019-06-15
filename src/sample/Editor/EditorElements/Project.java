@@ -1,32 +1,30 @@
 package sample.Editor.EditorElements;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.List;
 
-public class Project
+public class Project implements Serializable
 {
-    private long projectSize;
     private String type;
     private List<Document> documents;
     private File projectFolder;
     private File documentsFolder;
     private File settingsFolder;
     private File projectNotesFolder;
+    private File trashFolder;
+    private String name;
 
-    public Project(List<Document> documents, File projectFolder, File documentsFolder, File settingsFolder, File projectNotesFolder, String type)
+    public Project(String projectName, List<Document> documents, File projectFolder, File documentsFolder, File settingsFolder, File projectNotesFolder, File trashFolder, String type)
     {
-        this.projectSize = 0;
         this.documents = documents;
+        this.name = projectName;
         this.projectFolder = projectFolder;
         this.documentsFolder = documentsFolder;
         this.settingsFolder = settingsFolder;
+        this.trashFolder = trashFolder;
         this.projectNotesFolder = projectNotesFolder;
         this.type = type;
-    }
-
-    public long getProjectSize()
-    {
-        return projectSize;
     }
 
     public List<Document> getDocuments()
@@ -49,6 +47,11 @@ public class Project
         return documentsFolder;
     }
 
+    public String getName()
+    {
+        return name;
+    }
+
     public File getSettingsFolder()
     {
         return settingsFolder;
@@ -59,17 +62,9 @@ public class Project
         return projectNotesFolder;
     }
 
-    @Override
-    public String toString()
+    public void addDocument(Document document)
     {
-        return "Project{" +
-                "projectSize=" + projectSize +
-                ", type='" + type + '\'' +
-                ", documents=" + documents +
-                ", projectFolder=" + projectFolder +
-                ", documentsFolder=" + documentsFolder +
-                ", settingsFolder=" + settingsFolder +
-                ", projectNotesFolder=" + projectNotesFolder +
-                '}';
+        documents.add(document);
     }
+
 }

@@ -1,8 +1,6 @@
 package sample;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -57,7 +55,28 @@ public class Controller implements Initializable
         openBtn.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
 
-            fileChooser.showOpenDialog(pane.getScene().getWindow());
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PLUME 3 projects (*.pl3)", "*.pl3");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+            // Show open project dialog
+            File file = fileChooser.showOpenDialog(pane.getScene().getWindow());
+
+            // If we open file, not cancel, convert file to object
+            if(file != null)
+            {
+                try {
+
+                    FileInputStream fi = new FileInputStream(new File(file.getPath()));
+                    ObjectInputStream oi = new ObjectInputStream(fi);
+
+                    Project project = (Project) oi.readObject();
+
+                    openEditorScreen(project);
+
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 
@@ -65,16 +84,22 @@ public class Controller implements Initializable
     {
         FileChooser fileChooser = new FileChooser();
 
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PLUME 3 projects (*.pl3)", "*.pl3");
+        fileChooser.getExtensionFilters().add(extFilter);
+
         Window window = pane.getScene().getWindow();
 
         // Dialog for creating a project
         File file = fileChooser.showSaveDialog(window);
 
-        // Create project folder in a path chosen with a dialog
-        File createdFileDirectory = new File(file.getPath());
-        createdFileDirectory.mkdir();
+        if(file != null)
+        {
+            // Create project folder in a path chosen with a dialog
+            File createdFileDirectory = new File(file.getPath());
+            createdFileDirectory.mkdir();
 
-        createFilesAndDirectories(createdFileDirectory, type);
+            createFilesAndDirectories(createdFileDirectory, type);
+        }
     }
 
     private void createFilesAndDirectories(File createdFileDirectory, String type) throws IOException
@@ -89,21 +114,40 @@ public class Controller implements Initializable
         File settingsFolder = new File(createdFileDirectory.getPath() + "\\Settings");
         settingsFolder.mkdir();
 
-        Project project = new Project(new ArrayList<>(), createdFileDirectory, docsFolder, settingsFolder, projectNotesFolder, type);
+        File trashFolder = new File(createdFileDirectory.getPath() + "\\Trash");
+        trashFolder.mkdir();
 
-        // Create project .pl3 file
-        new File(createdFileDirectory + "\\" + createdFileDirectory.getName() + ".pl3").createNewFile();
+        String fullFileName = createdFileDirectory.getName();
 
-        // Write project attributes to this newly created .pl3 project file
-        PrintWriter writer = new PrintWriter(createdFileDirectory + "\\" + createdFileDirectory.getName() + ".pl3", "UTF-8");
-        writer.println(project.toString());
-        writer.close();
+        Project project = new Project(fullFileName.substring(0, fullFileName.length() - 4), new ArrayList<>(), createdFileDirectory, docsFolder, settingsFolder, projectNotesFolder, trashFolder, type);
 
+        System.out.println(project.toString());
+
+        // Write & save project attributes to this newly created .pl3 project file
+        FileOutputStream fileOut = new FileOutputStream(createdFileDirectory + "\\" + createdFileDirectory.getName());
+        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+        objectOut.writeObject(project);
+        objectOut.close();
+
+        openEditorScreen(project);
+    }
+
+    private void openEditorScreen(Project project) throws IOException
+    {
         // Open editor screen
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./Editor/editor.fxml"));
         Stage stage = (Stage) pane.getScene().getWindow();
+
+        stage.setResizable(true);
+
+        stage.setWidth(900);
+        stage.setWidth(750);
+        stage.setMinWidth(900);
+        stage.setMinHeight(750);
+
         Scene scene = new Scene(loader.load());
         Editor editor = loader.getController();
+
         editor.setProject(project);
         stage.setScene(scene);
     }

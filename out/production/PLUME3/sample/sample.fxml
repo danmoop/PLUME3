@@ -20,7 +20,7 @@
    <children>
       <Pane fx:id="pane" prefHeight="600.0" prefWidth="900.0">
          <children>
-            <Pane prefHeight="600.0" prefWidth="257.0" style="-fx-background-color: #383838; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 20, 0, 0, 0);;">
+            <Pane layoutX="-5.0" layoutY="-5.0" prefHeight="610.0" prefWidth="272.0" style="-fx-background-color: #383838; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 3, 0);">
                <children>
                   <Label alignment="CENTER" prefHeight="96.0" prefWidth="257.0" text="PLUME" textFill="WHITE">
                      <font>
@@ -35,7 +35,7 @@
                         <FontAwesomeIconView fill="WHITE" glyphName="FILE" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="createBookBtn" layoutX="55.0" layoutY="291.0" prefHeight="38.0" prefWidth="149.0" style="-fx-background-color: #242422;" text="Create Book" textFill="WHITE">
+                  <JFXButton fx:id="createBookBtn" disable="true" layoutX="55.0" layoutY="291.0" prefHeight="38.0" prefWidth="149.0" style="-fx-background-color: #242422;" text="Create Book" textFill="WHITE">
                      <font>
                         <Font name="☞Eina01-SemiBold" size="17.0" />
                      </font>
