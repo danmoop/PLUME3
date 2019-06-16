@@ -8,6 +8,7 @@ public class Project implements Serializable
 {
     private String type;
     private List<Document> documents;
+    private List<Document> removedDocs;
     private File projectFolder;
     private File documentsFolder;
     private File settingsFolder;
@@ -15,16 +16,17 @@ public class Project implements Serializable
     private File trashFolder;
     private String name;
 
-    public Project(String projectName, List<Document> documents, File projectFolder, File documentsFolder, File settingsFolder, File projectNotesFolder, File trashFolder, String type)
+    public Project(String type, List<Document> documents, List<Document> removedDocs, File projectFolder, File documentsFolder, File settingsFolder, File projectNotesFolder, File trashFolder, String name)
     {
+        this.type = type;
         this.documents = documents;
-        this.name = projectName;
+        this.removedDocs = removedDocs;
         this.projectFolder = projectFolder;
         this.documentsFolder = documentsFolder;
         this.settingsFolder = settingsFolder;
-        this.trashFolder = trashFolder;
         this.projectNotesFolder = projectNotesFolder;
-        this.type = type;
+        this.trashFolder = trashFolder;
+        this.name = name;
     }
 
     public List<Document> getDocuments()
@@ -50,6 +52,16 @@ public class Project implements Serializable
     public String getName()
     {
         return name;
+    }
+
+    public File getTrashFolder()
+    {
+        return trashFolder;
+    }
+
+    public List<Document> getRemovedDocs()
+    {
+        return removedDocs;
     }
 
     public File getSettingsFolder()

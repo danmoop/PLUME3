@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 <?import javafx.scene.web.HTMLEditor?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Editor.Editor">
@@ -23,7 +22,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <AnchorPane fx:id="pane" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
          <children>
             <MenuBar prefHeight="25.0" prefWidth="900.0" style="-fx-background-color: #f8f8f8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <menus>
@@ -44,47 +43,70 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <AnchorPane layoutY="70.0" prefHeight="530.0" prefWidth="241.0" style="-fx-background-color: #383838; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 20, 0, 2, 0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="29.0">
+            <AnchorPane layoutY="70.0" prefHeight="530.0" prefWidth="241.0" style="-fx-background-color: #fafafa; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="29.0">
                <children>
-                  <Label fx:id="documentName" alignment="CENTER" layoutX="27.0" layoutY="14.0" prefHeight="37.0" prefWidth="187.0" text="ProjectName" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS" underline="true" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="10.0">
+                  <Label fx:id="documentName" alignment="CENTER" layoutX="27.0" layoutY="14.0" prefHeight="37.0" prefWidth="187.0" text="ProjectName" textOverrun="CENTER_WORD_ELLIPSIS" underline="true" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="10.0">
                      <font>
                         <Font name="☞Eina01-SemiBold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="60.0" layoutY="70.0" prefHeight="37.0" prefWidth="83.0" text="Draft" textFill="WHITE" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="70.0">
+                  <Label layoutX="66.0" layoutY="69.0" prefHeight="37.0" prefWidth="72.0" text="Draft" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="103.0" AnchorPane.topAnchor="69.0">
                      <font>
                         <Font name="☞Eina01-SemiBold" size="17.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIconView fill="#eeeeee" glyphName="FILE" />
+                        <FontAwesomeIconView glyphName="FILE_TEXT_ALT" />
                      </graphic>
                   </Label>
-                  <JFXButton fx:id="addDraftBtn" ellipsisString="" layoutX="143.0" layoutY="76.0" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #4e4f53;" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="76.0">
+                  <JFXButton fx:id="addDraftBtn" ellipsisString="" layoutX="138.0" layoutY="75.0" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #e3e3e3;" AnchorPane.leftAnchor="138.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="75.0">
                      <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS" />
+                        <FontAwesomeIconView fill="#282828" glyphName="PLUS" />
                      </graphic>
                   </JFXButton>
-                  <Label alignment="CENTER" layoutX="27.0" layoutY="453.0" prefHeight="37.0" prefWidth="187.0" text="Trash" textFill="WHITE" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0">
+                  <Label alignment="CENTER" layoutX="27.0" layoutY="536.0" prefHeight="37.0" prefWidth="187.0" text="Trash" AnchorPane.bottomAnchor="148.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0">
                      <font>
                         <Font name="☞Eina01-SemiBold" size="17.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIconView fill="#eeeeee" glyphName="TRASH_ALT" />
+                        <FontAwesomeIconView glyphName="TRASH_ALT" />
                      </graphic>
                   </Label>
                   <JFXListView fx:id="draftList" layoutX="21.0" layoutY="118.0" prefHeight="402.0" prefWidth="200.0" styleClass="listView" stylesheets="@style.css" AnchorPane.bottomAnchor="201.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="118.0" />
-                  <JFXListView layoutX="21.0" layoutY="579.0" prefHeight="117.0" prefWidth="200.0" styleClass="listView" stylesheets="@style.css" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0" />
+                  <JFXListView fx:id="trashList" layoutX="21.0" layoutY="579.0" prefHeight="117.0" prefWidth="200.0" styleClass="listView" stylesheets="@style.css" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0" />
                </children>
             </AnchorPane>
-            <Text fx:id="notification" layoutX="289.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Looks like there is nothing here yet. Get started by creating / opening blank file on the left sidebar!" textAlignment="CENTER" wrappingWidth="565.0" AnchorPane.bottomAnchor="344.5450019836426" AnchorPane.leftAnchor="289.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="351.17499923706055">
+            <AnchorPane layoutX="251.0" prefHeight="54.0" prefWidth="639.0" style="-fx-background-color: #f2f2f2; -fx-border-color: #ced1d8;" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="33.0">
+               <children>
+                  <Label fx:id="activeDocumentLabel" alignment="CENTER" layoutX="25.0" layoutY="9.0" prefHeight="37.0" prefWidth="145.0" text="ListName" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="8.0">
+                     <font>
+                        <Font name="☞Eina01-SemiBold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="NEWSPAPER_ALT" />
+                     </graphic>
+                  </Label>
+                  <Label fx:id="activeDocumentLabel1" alignment="CENTER" layoutX="183.0" layoutY="9.0" prefHeight="37.0" prefWidth="200.0" text="Words: 300" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="183.0" AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="9.0">
+                     <font>
+                        <Font name="☞Eina01-SemiBold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SEARCH" />
+                     </graphic>
+                  </Label>
+                  <Label fx:id="activeDocumentLabel11" alignment="CENTER" layoutX="412.0" layoutY="13.0" prefHeight="32.0" prefWidth="187.0" text="Characters: 5000" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="12.0">
+                     <font>
+                        <Font name="☞Eina01-SemiBold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SEARCH" />
+                     </graphic>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <HTMLEditor fx:id="editor" layoutX="251.0" layoutY="95.0" prefHeight="645.0" prefWidth="624.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="95.0" />
+            <Label fx:id="notification" layoutX="289.0" layoutY="249.0" prefHeight="253.0" prefWidth="566.0" text="Looks like there is nothing here yet. In order to get started you need to create or open blank file on the left sidebar!" textAlignment="CENTER" visible="false" wrapText="true" AnchorPane.leftAnchor="289.0" AnchorPane.rightAnchor="45.0">
                <font>
-                  <Font name="☞Eina01-SemiBold" size="23.0" />
-               </font>
-            </Text>
-            <HTMLEditor fx:id="editor" layoutX="251.0" layoutY="37.0" prefHeight="706.0" prefWidth="641.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="37.0" />
-            <Label fx:id="activeDocumentLabel" layoutX="746.0" layoutY="45.0" prefHeight="17.0" prefWidth="129.0" AnchorPane.leftAnchor="746.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="45.0">
-               <font>
-                  <Font name="☞Eina01-SemiBold" size="16.0" />
+                  <Font name="☞Eina01-SemiBold" size="26.0" />
                </font>
             </Label>
          </children>

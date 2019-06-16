@@ -96,6 +96,7 @@ public class Controller implements Initializable
         {
             // Create project folder in a path chosen with a dialog
             File createdFileDirectory = new File(file.getPath());
+
             createdFileDirectory.mkdir();
 
             createFilesAndDirectories(createdFileDirectory, type);
@@ -119,7 +120,7 @@ public class Controller implements Initializable
 
         String fullFileName = createdFileDirectory.getName();
 
-        Project project = new Project(fullFileName.substring(0, fullFileName.length() - 4), new ArrayList<>(), createdFileDirectory, docsFolder, settingsFolder, projectNotesFolder, trashFolder, type);
+        Project project = new Project(type, new ArrayList<>(), new ArrayList<>(), createdFileDirectory, docsFolder, settingsFolder, projectNotesFolder, trashFolder, fullFileName.substring(0, fullFileName.length() - 4));
 
         System.out.println(project.toString());
 
@@ -140,8 +141,8 @@ public class Controller implements Initializable
 
         stage.setResizable(true);
 
-        stage.setWidth(900);
-        stage.setWidth(750);
+        stage.setWidth(1100);
+        stage.setHeight(750);
         stage.setMinWidth(900);
         stage.setMinHeight(750);
 
