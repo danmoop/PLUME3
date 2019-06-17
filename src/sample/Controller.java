@@ -136,7 +136,7 @@ public class Controller implements Initializable
     private void openEditorScreen(Project project) throws IOException
     {
         // Open editor screen
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("./Editor/editor.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/Editor/editor.fxml"));
         Stage stage = (Stage) pane.getScene().getWindow();
 
         stage.setResizable(true);

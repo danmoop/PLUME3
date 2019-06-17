@@ -63,7 +63,7 @@
                         <FontAwesomeIconView fill="#282828" glyphName="PLUS" />
                      </graphic>
                   </JFXButton>
-                  <Label alignment="CENTER" layoutX="27.0" layoutY="536.0" prefHeight="37.0" prefWidth="187.0" text="Trash" AnchorPane.bottomAnchor="148.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0">
+                  <Label alignment="CENTER" layoutX="27.0" layoutY="536.0" prefHeight="37.0" prefWidth="119.0" text="Trash" AnchorPane.bottomAnchor="148.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="95.0">
                      <font>
                         <Font name="☞Eina01-SemiBold" size="17.0" />
                      </font>
@@ -71,6 +71,11 @@
                         <FontAwesomeIconView glyphName="TRASH_ALT" />
                      </graphic>
                   </Label>
+                  <JFXButton fx:id="emptyTrash" ellipsisString="" layoutX="144.0" layoutY="542.0" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #e3e3e3;" text="Empty" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="32.0">
+                     <font>
+                        <Font name="☞Eina01-SemiBold" size="12.0" />
+                     </font>
+                  </JFXButton>
                   <JFXListView fx:id="draftList" layoutX="21.0" layoutY="118.0" prefHeight="402.0" prefWidth="200.0" styleClass="listView" stylesheets="@style.css" AnchorPane.bottomAnchor="201.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="118.0" />
                   <JFXListView fx:id="trashList" layoutX="21.0" layoutY="579.0" prefHeight="117.0" prefWidth="200.0" styleClass="listView" stylesheets="@style.css" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0" />
                </children>

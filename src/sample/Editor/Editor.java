@@ -49,6 +49,9 @@ public class Editor implements Initializable
     @FXML
     Label activeDocumentLabel;
 
+    @FXML
+    JFXButton emptyTrash;
+
     private Project project;
     private Document activeDocument = null;
 
@@ -70,6 +73,8 @@ public class Editor implements Initializable
                 e.printStackTrace();
             }
         });
+
+        emptyTrash.setOnAction(event -> emptyTrash());
 
         menu = new ContextMenu();
 
@@ -131,14 +136,12 @@ public class Editor implements Initializable
 
     private void initTrashLists()
     {
-        System.out.println(project.getRemovedDocs().size());
         project.getRemovedDocs().forEach(document -> trashList.getItems().add(document.getDocumentName()));
     }
 
     private void addDraftDocument() throws IOException
     {
         int index = project.getDocumentsFolder().list().length;
-
 
         // UUID is used here to avoid same names for documents (previously I used doc's index, so in theory there could be the same docs
         File doc = new File(project.getDocumentsFolder() + "\\" + UUID.randomUUID().toString() + ".html");
@@ -186,7 +189,7 @@ public class Editor implements Initializable
     {
         try {
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(project.getTrashFolder() + "\\" + activeDocument.getDocumentName() + ".html"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(project.getTrashFolder() + "\\" + activeDocument.getPath().getName() + ".html"));
             writer.write(editor.getHtmlText());
             writer.close();
 
@@ -203,6 +206,27 @@ public class Editor implements Initializable
             trashList.getItems().add(activeDocument.getDocumentName());
 
             saveProject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void emptyTrash()
+    {
+        try {
+
+            project.getRemovedDocs().clear();
+
+            File[] trashFiles = project.getTrashFolder().listFiles();
+
+            for (File trashFile : trashFiles)
+            {
+                trashFile.delete();
+            }
+
+            trashList.getItems().clear();
+            saveProject();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
